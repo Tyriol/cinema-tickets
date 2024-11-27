@@ -1,10 +1,16 @@
-import TicketTypeRequest from './lib/TicketTypeRequest.js';
-import InvalidPurchaseException from './lib/InvalidPurchaseException.js';
+// import TicketTypeRequest from "./lib/TicketTypeRequest.js";
+// import InvalidPurchaseException from "./lib/InvalidPurchaseException.js";
 
-export default class TicketService {
-  /**
-   * Should only have private methods other than the one below.
-   */
+class TicketService {
+  // define prices
+
+  // validate account id
+
+  // validate ticket type requests
+
+  // calculate total and pay for tickets
+
+  // reserve seats
 
   purchaseTickets(accountId, ...ticketTypeRequests) {
     // throws InvalidPurchaseException
