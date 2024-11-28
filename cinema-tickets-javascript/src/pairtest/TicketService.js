@@ -1,7 +1,7 @@
 import TicketTypeRequest from "./lib/TicketTypeRequest.js";
 import InvalidPurchaseException from "./lib/InvalidPurchaseException.js";
 
-class TicketService {
+export default class TicketService {
   // define prices
   #PRICES = {
     ADULT: 20,
@@ -23,6 +23,7 @@ class TicketService {
       );
     }
   }
+  // TODO: add tests
 
   // validate ticket type requests
   #validateTicketType(ticketTypeRequests) {
@@ -39,5 +40,6 @@ class TicketService {
 
   purchaseTickets(accountId, ...ticketTypeRequests) {
     // throws InvalidPurchaseException
+    this.#validateAccountID(accountId);
   }
 }
