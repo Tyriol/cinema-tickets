@@ -26,12 +26,12 @@ describe("Valid tickets have been requested", () => {
   test("An error is thrown if more than 20 tickets are requested", async () => {
     let ticketTypeRequests = [];
     for (let i = 1; i <= 21; i++) {
-      const ticket = new TicketTypeRequest("ADULT, 1");
+      const ticket = new TicketTypeRequest("ADULT", 1);
       ticketTypeRequests.push(ticket);
     }
     const newTickets = new TicketService();
     expect(() =>
-      newTickets.purchaseTickets(100, ticketTypeRequests)
+      newTickets.purchaseTickets(100, ...ticketTypeRequests)
     ).toThrowError("The maximum number of tickets you can purchase is 20");
   });
 });

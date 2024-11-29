@@ -34,10 +34,21 @@ export default class TicketService {
         "Ticket quantity error"
       );
     }
+    // if there are more than 20, throw an error
+    let ticketsRequested = 0;
+    ticketTypeRequests.map((ticketTypeRequest) => {
+      const numOfTickets = ticketTypeRequest.getNoOfTickets();
+      ticketsRequested += numOfTickets;
+    });
+    if (ticketsRequested > 20) {
+      throw new InvalidPurchaseException(
+        "The maximum number of tickets you can purchase is 20",
+        "Ticket quantity error"
+      );
+    }
     // check that they are all valid ticket type requests
     // if there are valid ticket requests check an adult is present
     // determine the total number of tickets included in all the ticket type requests
-    // if there are more than 20, throw an error
   }
 
   // calculate total and pay for tickets
