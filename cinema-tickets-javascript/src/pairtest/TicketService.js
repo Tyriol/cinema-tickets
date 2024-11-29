@@ -28,6 +28,12 @@ export default class TicketService {
   // validate ticket type requests
   #validateTicketType(ticketTypeRequests) {
     // check that there are ticket type requests
+    if (ticketTypeRequests.length === 0) {
+      throw new InvalidPurchaseException(
+        "You must add at least one ticket",
+        "Ticket quantity error"
+      );
+    }
     // check that they are all valid ticket type requests
     // if there are valid ticket requests check an adult is present
     // determine the total number of tickets included in all the ticket type requests
@@ -41,5 +47,6 @@ export default class TicketService {
   purchaseTickets(accountId, ...ticketTypeRequests) {
     // throws InvalidPurchaseException
     this.#validateAccountID(accountId);
+    this.#validateTicketType(ticketTypeRequests);
   }
 }

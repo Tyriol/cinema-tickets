@@ -20,7 +20,7 @@ describe("Valid tickets have been requested", () => {
   test("An error is thrown if no tickets are requested", async () => {
     const newTickets = new TicketService();
     expect(() => newTickets.purchaseTickets(100)).toThrowError(
-      "No tickets requested"
+      "You must add at least one ticket"
     );
   });
   test("An error is thrown if more than 20 tickets are requested", async () => {
