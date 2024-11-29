@@ -17,8 +17,8 @@ describe("AccountID validation", () => {
 });
 
 describe("Valid tickets have been requested", () => {
+  const newTickets = new TicketService();
   test("An error is thrown if no tickets are requested", async () => {
-    const newTickets = new TicketService();
     expect(() => newTickets.purchaseTickets(100)).toThrowError(
       "You must add at least one ticket"
     );
@@ -29,9 +29,17 @@ describe("Valid tickets have been requested", () => {
       const ticket = new TicketTypeRequest("ADULT", 1);
       ticketTypeRequests.push(ticket);
     }
-    const newTickets = new TicketService();
+    // const newTickets = new TicketService();
     expect(() =>
       newTickets.purchaseTickets(100, ...ticketTypeRequests)
     ).toThrowError("The maximum number of tickets you can purchase is 20");
+  });
+  test("An error is thrown if no ADULT ticket is purchased", () => {
+    let ticketTypeRequests = [];
+    ticketTypeRequests.push(new TicketTypeRequest("CHILD", 2));
+    ticketTypeRequests.push(new TicketTypeRequest("INFANT", 1));
+    expect(() =>
+      newTickets.purchaseTickets(100, ...ticketTypeRequests)
+    ).toThrowError("There must be an Adult included in the ticket purchase");
   });
 });
